@@ -9,7 +9,7 @@ setup(
     install_requires=['asyncinit'],
     version='0.1',
     license='MIT',
-    description='Webservice Framework for aiohttp',
+    description='Websocket Framework for aiohttp',
     # long_description=open('README.txt').read(),
 )
 

@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(
-    name='Webservice Framework',
+    name='aiohttp_wsf',
     url='https://github.com/dest81/aiohttp_wsf',
     author='Igor Margitich',
     author_email='dest81@gmail.com',

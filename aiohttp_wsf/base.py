@@ -30,7 +30,7 @@ class WebSocket(web.View):
                     await ws.close()
                 else:
                     logger.debug('handling data')
-                    WSHandler(self.request, ws, msg.data)
+                    await WSHandler(self.request, ws, msg.data)
 
                     # handler()
                     # await ws.send_str(msg.data + '/answer')

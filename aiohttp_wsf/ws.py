@@ -1,21 +1,24 @@
 import json
+from asyncinit import asyncinit
 from .exceptions import HandlerNotFoundException, RouteNotFoundException
 
 
+# @asyncinit
 class WS:
     def __init__(self, request, ws, data):
         self.ws = ws
         self.data = data
 
+@asyncinit
 class WSHandler:
 
-    def __init__(self, request, ws, data):
+    async def __init__(self, request, ws, data):
         self.request = request
         self.ws = ws
         self.data = json.loads(data)
         handler = self.get_route()
 
-        await handler(request, ws, self.data).run(request, ws)
+        await handler(request, ws, self.data).get(request, ws)
 
     def get_route(self):
         route = self.data.get('type', None)

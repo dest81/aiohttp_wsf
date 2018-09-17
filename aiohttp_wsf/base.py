@@ -10,17 +10,6 @@ class WebSocket(web.View):
         ws = web.WebSocketResponse()
         await ws.prepare(self.request)
 
-        # session = await get_session(self.request)
-        # user = User(self.request.db, {'id': session.get('user')})
-        # login = await user.get_login()
-
-        # for _ws in self.request.app['websockets']:
-        #     _ws.send_str('%s joined' % 'login')
-        # self.request.app['websockets'].append(ws)
-
-        # import pdb; pdb.set_trace()
-        # await ws.send_str('(%s) %s' % ('login', 'msg.data'))
-
         async for msg in ws:
             logger.debug('======== WEBSOCKET =========')
             logger.debug(msg)
@@ -30,10 +19,9 @@ class WebSocket(web.View):
                     await ws.close()
                 else:
                     logger.debug('handling data')
-                    await WSHandler(self.request, ws, msg.data)
+                    # await WSHandler(self.request, ws, msg.data)
+                    await WSHandler(self.request, ws, msg.json())
 
-                    # handler()
-                    # await ws.send_str(msg.data + '/answer')
             elif msg.type == WSMsgType.ERROR:
                 logger.debug('ws connection closed with exception %s' % ws.exception())
 
